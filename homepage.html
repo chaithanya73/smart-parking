@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMART PARKING</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('home_background.jpg'); /* Background image */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding-top: 100px; /* Account for fixed navbar */
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 15px 20px;
+      background: rgba(100, 40, 150, 0.8);
+      backdrop-filter: blur(10px);
+      color: #ffffff;
+      z-index: 1000;
+      border-bottom: 2px solid #d4b3ff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .navbar .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar .logo img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .navbar .logo-text {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    .navbar .profile-icon {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background-color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: #642896;
+      font-weight: bold;
+      border: 2px solid #642896;
+      transition: background-color 0.3s ease;
+      cursor: pointer;
+    }
+
+    .navbar .profile-icon:hover {
+      background-color: #642896;
+      color: #ffffff;
+    }
+
+    .navbar .login-btn {
+      padding: 8px 20px;
+      border-radius: 25px;
+      background-color: #d4b3ff;
+      color: #642896;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .navbar .login-btn:hover {
+      background-color: #642896;
+      color: white;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 50px;
+      width: 90%;
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .box {
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 250px;
+      background-color: #642896;
+      color: #ffffff;
+      transition: transform 0.2s ease;
+    }
+
+    .box:hover {
+      transform: scale(1.05);
+    }
+
+    .box h3 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
+
+    .box p {
+      font-size: 1rem;
+    }
+
+    .history {
+      background-color: #d4b3ff;
+    }
+    .add-car {
+      background-color: #b488cc;
+    }
+    .bills {
+      background-color: #8a5e99;
+    }
+    .extra {
+      background-color: #f0e1ff;
+      color: #642896;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="logo">
+      <img src="core icon.webp" alt="SMART PARKING Icon">
+      <span class="logo-text">SMART PARKING</span>
+    </div>
+    <!-- Profile Icon and Login/Logout button -->
+    <div class="navbar-actions">
+      <a href="profile.php">
+        <div class="profile-icon" id="profileIcon">SP</div>
+      </a>
+      <a href="login.html" id="loginButton" class="login-btn">Login</a>
+      <a href="logout.html" id="logoutButton" class="login-btn" style="display: none;">Logout</a>
+    </div>
+  </div>
+
+  <!-- Content container with boxes -->
+  <div class="container">
+    <a href="history.php">
+    <div class="box history">
+      <h3>Parking History</h3>
+      <p>View your parking session history.</p>
+    </div>
+    </a>
+    <a href="add_car.php">
+      <div class="box add-car">
+        <h3>Add Car</h3>
+        <p>Add your car details to track parking.</p>
+      </div>
+    </a>
+    <a href="pendingbills.php">
+    <div class="box bills">
+      <h3>Pending Bills</h3>
+      <p>Check and clear your bills.</p>
+    </div>
+    </a>
+
+    <div class="box extra">
+      <h3>Additional Feature</h3>
+      <p>Placeholder for future features.</p>
+    </div>
+  </div>
+
+  <script>
+    // Check if user is logged in by verifying if localStorage contains user data
+    window.onload = function() {
+      const user = JSON.parse(localStorage.getItem('user'));
+      if (user) {
+        document.getElementById('profileIcon').innerText = user.name ? user.name.charAt(0).toUpperCase() : 'U';
+        document.getElementById('loginButton').style.display = 'none'; // Hide Login button
+        document.getElementById('logoutButton').style.display = 'inline'; // Show Logout button
+      } else {
+        document.getElementById('profileIcon').innerText = 'SP'; // Default if no user is logged in
+        document.getElementById('loginButton').style.display = 'inline'; // Show Login button
+        document.getElementById('logoutButton').style.display = 'none'; // Hide Logout button
+      }
+    };
+
+    // Logout functionality (clear localStorage)
+    document.getElementById('logoutButton')?.addEventListener('click', function() {
+      localStorage.removeItem('user');
+      window.location.reload(); // Reload to update login/logout buttons
+    });
+  </script>
+
+</body>
+</html>

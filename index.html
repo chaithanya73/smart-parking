@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Parking Portal</title>
+    <style>
+        /* Apply background image using pseudo-element */
+        body {
+            position: relative;
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden; /* Prevent scrolling if background image is fixed */
+        }
+
+        /* Background image pseudo-element */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%; /* Set the background image width to 80% */
+            height: 100vh; /* Full viewport height */
+            background-image: url('images1.jpg'); /* Replace with your actual image path */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -1; /* Place the background behind content */
+        }
+
+        .container {
+            width: 80%; /* Set container width to 80% of the viewport */
+            max-width: 800px; /* Maximum width to prevent it from stretching too wide */
+            margin: 0 auto; /* Center the container */
+            text-align: center;
+            background-color: rgba(214, 230, 242, 0.9); /* Second color with slight transparency */
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #769fcd; /* Last color */
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #b9d7ea; /* Third color */
+            color: #ffffff;
+            padding: 12px 24px;
+            margin: 10px;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #769fcd; /* Last color */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Smart Parking</h1>
+        <a href="login.html" class="btn">Login</a>
+        <a href="register.html" class="btn">Register</a>
+    </div>
+</body>
+</html>
